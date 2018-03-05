@@ -113,7 +113,7 @@ export class StrongDaemon {
 
     /**
      * @private
-     * @param {number}      interval_time - 0 < Integer <= 0x7FFFFFFF (max setInterval delay)
+     * @param {number}      interval_time - 0 <= Integer <= 0x7FFFFFFF (max setInterval delay)
      * @param {null|Object} caller - if `task` uses `this` keyword THEN Object ELSE null
      * @param {function}    task
      * @param {Array}       [task_arguments_array=[]] - array of arguments applied to task
@@ -122,7 +122,7 @@ export class StrongDaemon {
      */
     _validateArgs(interval_time: number, caller: object|null, task: (...args:any[])=>any, task_arguments_array: any[]) : void {
         if( !(
-            Number.isInteger(interval_time) && interval_time > 0 && interval_time <= MAX_INTERVAL  &&
+            Number.isInteger(interval_time) && interval_time >= 0 && interval_time <= MAX_INTERVAL  &&
             typeof(caller) === 'object' && /* Null is also Object */
             typeof(task) === 'function' &&
             Array.isArray(task_arguments_array)) ) {

@@ -25,6 +25,7 @@ describe('Unit test strong-daemon:', function() {
     it('StrongDaemon.constructor() invalid arguments', function() {
         const MAX_INT: number = Math.pow(2,31) - 1;
 
+        expect(()=>{ new NotTypedStrongDaemon(0, {},   ()=>{}, []) }).not.toThrow();
         expect(()=>{ new NotTypedStrongDaemon(1, {},   ()=>{}, []) }).not.toThrow();
         expect(()=>{ new NotTypedStrongDaemon(1, [],   ()=>{}, []) }).not.toThrow();
         expect(()=>{ new NotTypedStrongDaemon(1, {},   ()=>{}    ) }).not.toThrow();
@@ -32,7 +33,6 @@ describe('Unit test strong-daemon:', function() {
 
         // Arg 0
         expect(()=>{ new NotTypedStrongDaemon(undefined, {}, ()=>{}, []) }).toThrowError(TypeError);
-        expect(()=>{ new NotTypedStrongDaemon(0,         {}, ()=>{}, []) }).toThrowError(TypeError);
         expect(()=>{ new NotTypedStrongDaemon(-1,        {}, ()=>{}, []) }).toThrowError(TypeError);
         expect(()=>{ new NotTypedStrongDaemon(MAX_INT+1, {}, ()=>{}, []) }).toThrowError(TypeError);
 
